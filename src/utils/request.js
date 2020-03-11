@@ -1,10 +1,18 @@
 import axios from 'axios'
-
+import JSONbig from 'json-bigint'
 const instance = axios.create({
   timeout: 1000,
   baseURL: 'http://ttapi.research.itcast.cn'
 
 })
+
+instance.defaults.transformResponse = [function (data) {
+  try {
+    return JSONbig.parse(data)
+  } catch (err) {
+    return data
+  }
+}]
 
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
