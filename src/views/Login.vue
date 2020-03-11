@@ -34,8 +34,10 @@ export default {
       try {
         const data = await login(this.user)
         // 存储登录状态
+        // 1.vuex
+        this.$store.commit('setUser', data)
+        // 2.本地存储
         // 跳转到首页
-        console.log(data)
         this.$toast.success('登录成功！')
         this.$router.push('/')
       } catch (err) {
