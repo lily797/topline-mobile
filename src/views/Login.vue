@@ -32,10 +32,14 @@ export default {
   methods: {
     async handleLogin () {
       try {
-        const res = await login(this.user)
-        console.log(res)
+        const data = await login(this.user)
+        // 存储登录状态
+        // 跳转到首页
+        console.log(data)
+        this.$toast.success('登录成功！')
+        this.$router.push('/')
       } catch (err) {
-        console.log(err)
+        this.$toast.fail('登录失败！')
       }
     }
   }

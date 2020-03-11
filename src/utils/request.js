@@ -1,7 +1,7 @@
 import axios from 'axios'
 import JSONbig from 'json-bigint'
 const instance = axios.create({
-  timeout: 1000,
+  timeout: 2000,
   baseURL: 'http://ttapi.research.itcast.cn'
 
 })
@@ -27,7 +27,7 @@ instance.interceptors.request.use(function (config) {
 instance.interceptors.response.use(function (response) {
   // Any status code that lie within the range of 2xx cause this function to trigger
   // Do something with response data
-  return response
+  return response.data.data || response.data
 }, function (error) {
   // Any status codes that falls outside the range of 2xx cause this function to trigger
   // Do something with response error
